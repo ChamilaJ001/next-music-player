@@ -25,8 +25,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { auth } from "@clerk/nextjs/server";
+import { UserButton } from "@clerk/nextjs";
+import MobileNav from "./MobileNav";
+import Link from "next/link";
 
 export function Menu() {
+  const { userId } = auth();
   return (
     <>
       <div className="flex items-center justify-between px-7 py-3">
@@ -211,15 +216,24 @@ export function Menu() {
           </MenubarMenu> */}
         {/* </Menubar> */}
 
-        <div className="flex items-center gap-2">
-          <Image src="/img/logo-2.png" alt="logo" width={35} height={30} />
-          <h1 className="font-bold text-24">NextMusix</h1>
-        </div>
+        <Link href={"/"} className="flex items-center gap-2">
+          <Image
+            src="/img/logo-2.png"
+            alt="logo"
+            width={35}
+            height={30}
+            className="max-sm:w-8 max-sm:h-8"
+          />
+          <h1 className="font-bold text-24 max-sm:text-20">NextMusix</h1>
+        </Link>
 
         <div className="flex items-center gap-3">
+          <div className="hidden max-lg:block">
+            <MobileNav />
+          </div>
           <ModeToggle />
 
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
                 <AvatarImage
@@ -242,7 +256,9 @@ export function Menu() {
                 Logout
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
+
+          {userId ? <UserButton /> : ""}
         </div>
       </div>
     </>

@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "@/components/sidebar";
 import { playlists } from "@/data/playlists";
 import { Menu } from "@/components/menu";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,17 +33,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="hidden md:block">
+          <ClerkProvider
+            appearance={{
+              baseTheme: dark,
+            }}
+          >
             <Menu />
             <div className="border-t">
               <div className="bg-background">
-                <div className="grid grid-cols-6 gap-1">
+                <div className="grid grid-cols-5 lg:grid-cols-6 gap-1">
                   <Sidebar playlists={playlists} className="hidden lg:block" />
                   <div className="col-span-5">{children}</div>
                 </div>
               </div>
             </div>
-          </div>
+          </ClerkProvider>
         </ThemeProvider>
       </body>
     </html>

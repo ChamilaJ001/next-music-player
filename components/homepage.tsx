@@ -1,6 +1,4 @@
 import { PlusCircledIcon } from "@radix-ui/react-icons";
-
-import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,8 +9,8 @@ import Link from "next/link";
 
 const HomePage = () => {
   return (
-    <Tabs defaultValue="music" className="h-full space-y-6">
-      <div className="space-between flex items-center">
+    <Tabs defaultValue="music" className="h-full space-y-6 px-4">
+      <div className="justify-between flex items-center">
         <TabsList>
           <TabsTrigger value="music" className="relative">
             Music
@@ -25,7 +23,7 @@ const HomePage = () => {
         <div className="ml-auto">
           <Link
             href={"/add-music"}
-            className="flex items-center gap-1 bg-blue-1 text-white hover:bg-blue-2 px-4 py-1.5 rounded-lg"
+            className="flex items-center gap-1 bg-blue-1 text-white hover:bg-blue-2 px-4 py-1.5 rounded-lg max-sm:px-2"
           >
             <PlusCircledIcon className="h-4 w-4" />
             Add music
@@ -46,15 +44,15 @@ const HomePage = () => {
         <Separator className="my-4" />
         <div className="relative">
           <ScrollArea>
-            <div className="grid grid-cols-5 gap-24 pb-4">
+            <div className="grid grid-cols-5 max-md:grid-cols-3 gap-2 pb-4">
               {listenNowAlbums.map((album) => (
                 <AlbumArtwork
                   key={album.name}
                   album={album}
-                  className="w-[250px]"
+                  className="w-full h-full"
                   aspectRatio="portrait"
-                  width={250}
-                  height={330}
+                  width={500}
+                  height={3}
                 />
               ))}
             </div>

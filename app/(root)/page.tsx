@@ -12,7 +12,7 @@ import AddMusic from "./add-music/page";
 const Home = () => {
   const pathname = usePathname();
   return (
-    <div className="h-full px-4 py-6 lg:px-8">
+    <div className="h-full px-2 py-6 ">
       {pathname === "/" ? (
         <HomePage />
       ) : pathname === "/add-music" ? (
